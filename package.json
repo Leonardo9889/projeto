@@ -1,0 +1,25 @@
+{
+  "name": "projetinho",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:production": "./buld/src/server.js",
+    "start:dev": "ts-node-dev ./src/server.ts",
+    "build": "rm -rf build && tsc"
+  },
+  "keywords": [],
+  "author": "Leonardo de Souza Almeida",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/pg": "^8.11.6",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  }
+}
