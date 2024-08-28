@@ -1,25 +1,22 @@
-import { Client, Connection } from 'pg'
+import { PrismaClient } from '@prisma/client'
+
+export class DataBaseService {
+  constructor(private prisma: PrismaClient){}
+  
+  async connection(){
+    try {
+      this.prisma = new PrismaClient({
+        datasourceUrl: process.env.DATABASE_URL,
+        log: ['error', 'info', 'warn'],
+      })
 
 
-const execConnection = async () => {
-  let connection1: Client
-  if (connection1) {
-    return connection1
+      await this.prisma.$connect()
+      console.log("DataBase running!")
+    }catch(error){
+      await this.prisma.$disconnect()
+      console.error(`Fail to connect in database - Error ${error}`)
+    }
   }
+}
 
-    connection1 = new Client({
-      password: process.env.DB_PASSWORD,
-      port: Number(process.env.DB_PORT) || 5432,
-      database: process.env.DB_NAME,
-      user: process.env.DB_USER,
-      host: process.env.DB_HOST
-    })
-
-  await connection1.connect()
-
-  // if (client.database)
-
-    console.log()
-    
-  return connection1
-  }
