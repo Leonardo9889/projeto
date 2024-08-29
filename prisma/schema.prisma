@@ -21,8 +21,8 @@ model Client {
   email          String
   city           String
   cpfCnpj        Int
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime
+  createdAt      DateTime?        @default(now())
+  updatedAt      DateTime?
   ClothingRental ClothingRental[]
 }
 
@@ -37,8 +37,8 @@ model ClothingRental {
 }
 
 model Product {
-  id           Int      @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   productImage String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime?
 }

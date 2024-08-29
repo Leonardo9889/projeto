@@ -1,19 +1,21 @@
-import express, { Router } from 'express'
+import express from 'express'
 import 'dotenv/config'
-import {RouterService} from './routes/route'
+import { APIRoute } from './routes/route'
 import { DataBaseService } from './database/database.service'
 import {PrismaClient} from '@prisma/client'
+import { ClietController } from './model/Client/client.controller'
  
 const app = express()
-const routeService = Router()
 
 
 const prismaClient = new PrismaClient()
 const dataBaseService = new DataBaseService(prismaClient)
-const route = new RouterService(routeService, prismaClient)
+const apiRoute = new APIRoute(prismaClient)
+new ClietController(prismaClient)
+
 
 app.use(express.json())
-app.use(route.exec)
+app.use('/api/v1',apiRoute.route)
 
 async function exec(){
   try {

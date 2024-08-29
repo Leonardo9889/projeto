@@ -1,24 +1,25 @@
 import {Request, Response, Router} from 'express'
-import { CreateClietService } from '../service/createClient.controller'
+import { ClietController } from '../model/Client/client.controller'
 import { PrismaClient } from '@prisma/client'
 
-export class RouterService {
-  private routes: Router
-  private prismaClient: PrismaClient
-  constructor(private route: Router, private prisma: PrismaClient){
-    this.routes = this.route
-    this.prismaClient = this.prisma
+export class APIRoute {
+  public route: Router
+  private clietController: ClietController;
+  constructor(private readonly prismaClient: PrismaClient){
+    this.route = Router();
+    this.clietController = new ClietController(this.prismaClient)
+    this.execute();
   }
 
-  exec(){
-    const clientController = new CreateClietService(this.prismaClient)
+  execute(){
+    this.route.get(`/`, () => { console.log(`TESTE`) })
 
-    this.routes.use('/api/v1')
-    this.routes.get(`/`, () => { console.log(`TESTE`)})
+    this.route.post('/client', async (req: Request, res: Response) => {
+      return res.status(201).json(await this.clietController.create(req.body)) 
+    })
 
-    this.routes.post('/create', (req: Request, res: Response) => clientController.create(req.body))
-
-    return this.routes
+    this.route.get('/client', async(req:Request, res: Response) => {
+      return res.status(200).json(await this.clietController.getClient())
+    })
   }
 }
-

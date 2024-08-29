@@ -12,7 +12,7 @@ export class DataBaseService {
 
 
       await this.prisma.$connect()
-      console.log("DataBase running!")
+      console.log("Database running!")
     }catch(error){
       await this.prisma.$disconnect()
       console.error(`Fail to connect in database - Error ${error}`)

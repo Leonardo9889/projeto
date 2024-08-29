@@ -3,5 +3,6 @@ export interface Client {
   surName: string;
   numberPhone: number;
   email: string;
-  city: String
+  city: string;
+  cpfCnpj: number;
 }
