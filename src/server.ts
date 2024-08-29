@@ -4,7 +4,8 @@ import { APIRoute } from './routes/route'
 import { DataBaseService } from './database/database.service'
 import {PrismaClient} from '@prisma/client'
 import { ClietController } from './model/Client/client.controller'
- 
+import cors from 'cors'
+
 const app = express()
 
 
@@ -15,6 +16,7 @@ new ClietController(prismaClient)
 
 
 app.use(express.json())
+app.use(cors())
 app.use('/api/v1',apiRoute.route)
 
 async function exec(){
