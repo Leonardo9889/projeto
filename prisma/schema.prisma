@@ -17,10 +17,10 @@ model Client {
   id             Int              @id @default(autoincrement())
   name           String
   surName        String
-  numberPhone    Int
+  numberPhone    String           @db.VarChar(15)
   email          String
   city           String
-  cpfCnpj        Int
+  cpfCnpj        String           @db.VarChar(20)
   createdAt      DateTime?        @default(now())
   updatedAt      DateTime?
   ClothingRental ClothingRental[]

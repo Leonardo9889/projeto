@@ -1,8 +1,16 @@
 export interface Client {
   name: string;
   surName: string;
-  numberPhone: number;
+  numberPhone: string;
   email: string;
   city: string;
-  cpfCnpj: number;
+  cpfCnpj: string;
+}
+
+
+export interface ResponseClient {
+  status: number;
+  message: string,
+  error?: any
+  response?: Client
 }

@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Client" ALTER COLUMN "numberPhone" SET DATA TYPE TEXT,
+ALTER COLUMN "cpfCnpj" SET DATA TYPE TEXT;
